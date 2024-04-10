@@ -8,13 +8,8 @@ class Revendedor extends Pessoa {
 
   final double porcentagemDeLucro = 0.2;
 
-  Revendedor({required super.nome,
-    required super.cpf,
-    required super.dataNascimento,
-    required super.genero,
-    required this.matricula});
+  Revendedor(super.genero, this.matricula, {required super.nome, required super.cpf, required super.dataNascimento});
 
-  
   @override
   void falar(String texto) {
     String titulo;
@@ -38,9 +33,9 @@ class Revendedor extends Pessoa {
     if (produto.qtdEstoque > 0) {
       produto.realizarVenda();
       _produtosVendidos.add(produto);
+      print(_produtosVendidos[0].nome);
     } else {
       print("Produto sem estoque no momento!");
     }
   }
 }
-
