@@ -8,7 +8,8 @@ class Revendedor extends Pessoa {
 
   final double porcentagemDeLucro = 0.2;
 
-  Revendedor(super.genero, this.matricula, {required super.nome, required super.cpf, required super.dataNascimento});
+  Revendedor(super.genero, this.matricula,
+      {required super.nome, required super.cpf, required super.dataNascimento});
 
   @override
   void falar(String texto) {
@@ -33,9 +34,8 @@ class Revendedor extends Pessoa {
     if (produto.qtdEstoque > 0) {
       produto.realizarVenda();
       _produtosVendidos.add(produto);
-      print(_produtosVendidos[0].nome);
     } else {
-      print("Produto sem estoque no momento!");
+      throw Exception("No momento não possuímos o produto $nome em estoque. MÉTODO VENDER PRODUTO NA CLASSE REVENDEDOR");
     }
   }
 }
