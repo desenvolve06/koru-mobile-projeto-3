@@ -37,10 +37,10 @@ main() {
   /* Declaração de objetos Produto */
   Produto produto1 = Produto(nome: 'Colônia Floratta Flores Secretas 75ml',
       valor: 133.33,
-      qtdEstoque: 4); // Produto
+      qtdEstoque: 1); // Produto
   Produto produto2 = Produto(nome: 'Glamour Myriad Desodorante Colônia 75ml',
       valor: 154.90,
-      qtdEstoque: 5); // Produto
+      qtdEstoque: 1); // Produto
 
 
   /* Testes método falar() */
@@ -52,7 +52,7 @@ main() {
 
   //Add dinheiro
   print('Cliente tem o seguinte saldo ${cliente1.dinheiro} antes do depósito');
-  cliente1.adicionarDinheiro(100);
+  cliente1.adicionarDinheiro(1000);
   pularLinha();
 
 //aqui o cliente compra o produto e nele já tem um método que chama o revendedor.venderProduto

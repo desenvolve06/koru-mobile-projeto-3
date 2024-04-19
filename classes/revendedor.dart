@@ -39,7 +39,7 @@ class Revendedor extends Pessoa {
       produto.realizarVenda();
       _produtosVendidos.add(produto);
     } else {
-      print("Produto sem estoque no momento!");
+      throw Exception("No momento não possuímos o produto $nome em estoque.");
     }
   }
 }
