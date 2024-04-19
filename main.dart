@@ -88,7 +88,8 @@ main() {
   for(var produto in cliente1.produtosComprados){
     print(produto.nome);
   }
-
+  pularLinha();
+  cliente1.verProdutosComprados();
 }
 
 

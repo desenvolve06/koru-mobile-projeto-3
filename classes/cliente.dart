@@ -77,4 +77,20 @@ class Cliente extends Pessoa {
 
   List<Produto> get produtosComprados => _produtosComprados;
 
+
+  void verProdutosComprados() {
+    if (_produtosComprados.isEmpty) {
+      print("Nenhum produto comprado por ${nome}");
+      return;
+    }
+
+    ordenarProdutosComprados();
+
+    print("Produtos comprados por ${nome}:");
+    for (var produto in _produtosComprados) {
+      print("${produto.nome} - ${produto.valor.toStringAsFixed(2)}");
+    }
+  }
+
+
 }
