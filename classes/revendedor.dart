@@ -7,14 +7,15 @@ class Revendedor extends Pessoa {
   List<Produto> _produtosVendidos = <Produto>[];
 
   final double porcentagemDeLucro = 0.2;
+  double totalProdutosVendidos = 0.0;
 
-  Revendedor({required super.nome,
-    required super.cpf,
-    required super.dataNascimento,
-    required super.genero,
-    required this.matricula});
+  Revendedor(
+      {required super.nome,
+      required super.cpf,
+      required super.dataNascimento,
+      required super.genero,
+      required this.matricula});
 
-  
   @override
   void falar(String texto) {
     String titulo;
@@ -42,5 +43,29 @@ class Revendedor extends Pessoa {
       throw Exception("No momento não possuímos o produto $nome em estoque.");
     }
   }
-}
 
+  double calcularTotalVendido() {
+    _produtosVendidos.forEach((Produto produto) {
+      totalProdutosVendidos += produto.valor;
+    });
+    return totalProdutosVendidos.toDouble();
+  }
+
+  double calcularMediaProdutosVendidos() {
+    return totalProdutosVendidos / _produtosVendidos.length;
+  }
+
+  double calcularLucro() {
+    return totalProdutosVendidos * porcentagemDeLucro;
+  }
+
+  void verResumo() {
+      double totalVendido = calcularTotalVendido();
+      double media = calcularMediaProdutosVendidos();
+      double lucroObtido = calcularLucro();
+      print("O total vendido por $nome foi de R\$ ${totalVendido
+          .toStringAsFixed(2)} reais e a média aritmética de valor dos produtos"
+          " vendidos é de R\$ ${media.toStringAsFixed(2)} reais.O lucro "
+          "recebido foi de R\$ ${lucroObtido.toStringAsFixed(2)} reais.");
+  }
+}
