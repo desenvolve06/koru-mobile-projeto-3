@@ -42,4 +42,55 @@ class Cliente extends Pessoa {
       }
     }
   }
+
+  double calcularTotalGasto() {
+    double totalGasto=0;
+    for (var produto in _produtosComprados) {
+      totalGasto += produto.valor;
+    }
+    return totalGasto;
+  }
+
+  double calcularMediaProdutosComprados(){
+
+    if(_produtosComprados.isEmpty){
+      return 0;
+    }
+
+    double somaDosValoresProdutos = 0;
+    for (var produto in _produtosComprados){
+      somaDosValoresProdutos += produto.valor;
+    }
+
+    return somaDosValoresProdutos / _produtosComprados.length;
+  }
+
+  void verResumo(){
+    print('O total gasto por ${this.nome} foi ${calcularTotalGasto()} '
+    'e a média aritmética do valor dos produtos comprados é '
+    '${calcularMediaProdutosComprados().toStringAsFixed(2)} reais');
+  }
+
+  void ordenarProdutosComprados() {
+  _produtosComprados.sort((a, b) => a.nome.compareTo(b.nome));
+  }
+
+  List<Produto> get produtosComprados => _produtosComprados;
+
+
+  void verProdutosComprados() {
+    if (_produtosComprados.isEmpty) {
+      print("Nenhum produto comprado por ${nome}");
+      return;
+    }
+
+    ordenarProdutosComprados();
+
+    print("Produtos comprados por ${nome}:");
+    for (var produto in _produtosComprados) {
+      print("${produto.nome} - ${produto.valor.toStringAsFixed(2)}");
+    }
+  }
+
+
 }
