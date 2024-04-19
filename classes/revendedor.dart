@@ -7,14 +7,15 @@ class Revendedor extends Pessoa {
   List<Produto> _produtosVendidos = <Produto>[];
 
   final double porcentagemDeLucro = 0.2;
+  double totalProdutosVendidos = 0.0;
 
-  Revendedor({required super.nome,
-    required super.cpf,
-    required super.dataNascimento,
-    required super.genero,
-    required this.matricula});
+  Revendedor(
+      {required super.nome,
+      required super.cpf,
+      required super.dataNascimento,
+      required super.genero,
+      required this.matricula});
 
-  
   @override
   void falar(String texto) {
     String titulo;
@@ -42,5 +43,11 @@ class Revendedor extends Pessoa {
       throw Exception("No momento não possuímos o produto $nome em estoque.");
     }
   }
-}
 
+  double calcularTotalVendido() {
+    _produtosVendidos.forEach((Produto produto) {
+      totalProdutosVendidos += produto.valor;
+    });
+    return totalProdutosVendidos.toDouble();
+  }
+}
