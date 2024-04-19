@@ -73,9 +73,8 @@ main() {
   pularLinha();
   print('Receita gerada com o produto ${produto1.nome}: ${produto1.verReceitaGerada()
       .toStringAsFixed(2)}');
-  print('TProduto em estoque do produto ${produto1.nome}: ${produto1.qtdEstoque}');
-  print("Total gasto: ${revendedor1.calcularTotalVendido()}");
-  print("Média Produtos vendidos: ${revendedor1.calcularMediaProdutosVendidos()}");
+  print('Produto em estoque do produto ${produto1.nome}: ${produto1.qtdEstoque}');
+  revendedor1.verResumo();
 }
 
 

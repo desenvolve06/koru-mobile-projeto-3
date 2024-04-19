@@ -58,4 +58,14 @@ class Revendedor extends Pessoa {
   double calcularLucro() {
     return totalProdutosVendidos * porcentagemDeLucro;
   }
+
+  void verResumo() {
+      double totalVendido = calcularTotalVendido();
+      double media = calcularMediaProdutosVendidos();
+      double lucroObtido = calcularLucro();
+      print("O total vendido por $nome foi de R\$ ${totalVendido
+          .toStringAsFixed(2)} reais e a média aritmética de valor dos produtos"
+          " vendidos é de R\$ ${media.toStringAsFixed(2)} reais.O lucro "
+          "recebido foi de R\$ ${lucroObtido.toStringAsFixed(2)} reais.");
+  }
 }
