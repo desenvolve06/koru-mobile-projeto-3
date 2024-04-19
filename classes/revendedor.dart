@@ -50,4 +50,8 @@ class Revendedor extends Pessoa {
     });
     return totalProdutosVendidos.toDouble();
   }
-}
+
+  double calcularMediaProdutosVendidos() {
+      return totalProdutosVendidos / _produtosVendidos.length;
+    }
+  }
