@@ -52,6 +52,10 @@ class Revendedor extends Pessoa {
   }
 
   double calcularMediaProdutosVendidos() {
-      return totalProdutosVendidos / _produtosVendidos.length;
-    }
+    return totalProdutosVendidos / _produtosVendidos.length;
   }
+
+  double calcularLucro() {
+    return totalProdutosVendidos * porcentagemDeLucro;
+  }
+}
