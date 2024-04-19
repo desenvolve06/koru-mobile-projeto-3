@@ -66,6 +66,8 @@ main() {
   print('estoque do ${produto2.nome}: ${produto2.qtdEstoque}');
   print('vendido do ${produto2.nome}: ${produto2.qtdVendida}');
 
+  
+
   pularLinha();
   print('Informações do Produto:');
   print('Total de itens comprados: ${produto1.qtdVendida}');
@@ -75,6 +77,18 @@ main() {
       .toStringAsFixed(2)}');
   print('Produto em estoque do produto ${produto1.nome}: ${produto1.qtdEstoque}');
   revendedor1.verResumo();
+
+
+  //testando a feature 49
+  pularLinha();
+  print('total gasto ${cliente1.calcularTotalGasto()}');
+  print('média dos produtos comprados ${cliente1.calcularMediaProdutosComprados().toStringAsFixed(2)}');
+  cliente1.verResumo();
+  cliente1.ordenarProdutosComprados();
+  for(var produto in cliente1.produtosComprados){
+    print(produto.nome);
+  }
+
 }
 
 
