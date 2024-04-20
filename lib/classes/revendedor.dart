@@ -51,6 +51,7 @@ class Revendedor extends Pessoa {
     return totalProdutosVendidos.toDouble();
   }
 
+   //aqui temos um retorno 0, pois não é possível dividir um número por 0, pois segundo a matemática cai na indeterminação.
   double calcularMediaProdutosVendidos() {
     if(_produtosVendidos.isEmpty){
       return 0;
