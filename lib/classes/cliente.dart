@@ -51,6 +51,7 @@ class Cliente extends Pessoa {
     return totalGasto;
   }
 
+  //aqui temos um retorno 0, pois não é possível dividir um número por 0, pois segundo a matemática cai na indeterminação.
   double calcularMediaProdutosComprados(){
 
     if(_produtosComprados.isEmpty){
