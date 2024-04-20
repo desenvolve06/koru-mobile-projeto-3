@@ -1,4 +1,5 @@
 import '../enums/enums.dart';
+import '../utils.dart';
 import 'pessoa.dart';
 import 'produto.dart';
 
@@ -39,37 +40,29 @@ class Revendedor extends Pessoa {
     if (produto.qtdEstoque > 0) {
       produto.realizarVenda();
       _produtosVendidos.add(produto);
+      totalProdutosVendidos += produto.valor;
     } else {
       throw Exception("No momento não possuímos o produto $nome em estoque.");
     }
   }
 
   double calcularTotalVendido() {
-    _produtosVendidos.forEach((Produto produto) {
-      totalProdutosVendidos += produto.valor;
-    });
-    return totalProdutosVendidos.toDouble();
+    return _produtosVendidos.isEmpty
+        ? 0 : _produtosVendidos.fold(0, (total, produto) => total + produto.valor);
+
   }
 
-   //aqui temos um retorno 0, pois não é possível dividir um número por 0, pois segundo a matemática cai na indeterminação.
   double calcularMediaProdutosVendidos() {
-    if(_produtosVendidos.isEmpty){
-      return 0;
-    }
-    return totalProdutosVendidos / _produtosVendidos.length;
+    return _produtosVendidos.isEmpty
+        ? 0 : totalProdutosVendidos / _produtosVendidos.length;
   }
 
-  double calcularLucro() {
-    return totalProdutosVendidos * porcentagemDeLucro;
-  }
+  double calcularLucro() => totalProdutosVendidos * porcentagemDeLucro;
 
   void verResumo() {
-      double totalVendido = calcularTotalVendido();
-      double media = calcularMediaProdutosVendidos();
-      double lucroObtido = calcularLucro();
-      print("O total vendido por $nome foi de R\$ ${totalVendido
-          .toStringAsFixed(2)} reais e a média aritmética de valor dos produtos"
-          " vendidos é de R\$ ${media.toStringAsFixed(2)} reais.O lucro "
-          "recebido foi de R\$ ${lucroObtido.toStringAsFixed(2)} reais.");
+    double totalVendido = calcularTotalVendido();
+    double media = calcularMediaProdutosVendidos();
+    double lucroObtido = calcularLucro();
+    imprimirResumo(nome, totalVendido, media, lucroObtido);
   }
 }

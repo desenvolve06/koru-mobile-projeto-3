@@ -1,5 +1,4 @@
 import 'classes/cliente.dart';
-import 'classes/pessoa.dart';
 import 'classes/produto.dart';
 import 'classes/revendedor.dart';
 import 'enums/enums.dart';
@@ -7,12 +6,14 @@ import 'utils.dart';
 
 main() {
   /* Declaração de objetos Revendedor */
-  Revendedor revendedor1 = Revendedor(nome: "Jorge",
+  Revendedor revendedor1 = Revendedor(
+      nome: "Jorge",
       cpf: "064646464",
       dataNascimento: DateTime(2000, 12, 02),
       genero: Genero.masculino,
       matricula: "123456");
-  Revendedor revendedor2 = Revendedor(nome: "Ana",
+  Revendedor revendedor2 = Revendedor(
+      nome: "Ana",
       cpf: "064646464",
       dataNascimento: DateTime(2000, 12, 02),
       genero: Genero.feminino,
@@ -24,24 +25,28 @@ main() {
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
     genero: Genero.masculino,
-    dinheiro: 100,
+    dinheiro: 400
   );
-    Cliente cliente2 = Cliente(
+  Cliente cliente2 = Cliente(
     nome: 'Carla',
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
     genero: Genero.feminino,
+    dinheiro: 500
   );
 
-
   /* Declaração de objetos Produto */
-  Produto produto1 = Produto(nome: 'Colônia Floratta Flores Secretas 75ml',
+  Produto produto1 = Produto(
+      nome: 'Colônia Floratta Flores Secretas 75ml',
       valor: 133.33,
-      qtdEstoque: 1); // Produto
-  Produto produto2 = Produto(nome: 'Glamour Myriad Desodorante Colônia 75ml',
+      qtdEstoque: 9); // Produto
+  Produto produto2 = Produto(
+      nome: 'Glamour Myriad Desodorante Colônia 75ml',
       valor: 154.90,
-      qtdEstoque: 1); // Produto
+      qtdEstoque: 5); // Produto
 
+  Produto produto3 =
+      Produto(nome: 'Amore colonia', valor: 100.00, qtdEstoque: 5); // Produto
 
   /* Testes método falar() */
   String textoRevendedor = 'Olá como vai';
@@ -51,45 +56,39 @@ main() {
   cliente1.falar(textoCliente);
 
   //Add dinheiro
-  print('Cliente tem o seguinte saldo ${cliente1.dinheiro} antes do depósito');
-  cliente1.adicionarDinheiro(1000);
+  cliente1.adicionarDinheiro(1000.0);
   pularLinha();
+
 
 //aqui o cliente compra o produto e nele já tem um método que chama o revendedor.venderProduto
   cliente1.comprarProduto(produto1, revendedor1);
-  print('valor produto: ${produto1.valor}  Saldo final cliente: ${cliente1.dinheiro.toStringAsFixed(2)}');
   cliente1.comprarProduto(produto2, revendedor1);
-    print('valor produto: ${produto2.valor}  Saldo final cliente: ${cliente1.dinheiro.toStringAsFixed(2)}');
-
-  print('estoque do ${produto1.nome}: ${produto1.qtdEstoque}');
-  print('vendido do ${produto1.nome}: ${produto1.qtdVendida}');
-  print('estoque do ${produto2.nome}: ${produto2.qtdEstoque}');
-  print('vendido do ${produto2.nome}: ${produto2.qtdVendida}');
-
-  
+  cliente1.comprarProduto(produto3, revendedor1);
+  pularLinha();
 
   pularLinha();
-  print('Informações do Produto:');
-  print('Total de itens comprados: ${produto1.qtdVendida}');
-  print('Total de itens vendidos: ${produto1.qtdVendida}');
+  //Mostra produtos vendidos e estoques dos produtos
+  mostrarQtdProdutoEmEstoque(produto1.nome, produto1.qtdEstoque);
+  mostrarQtdVendida(produto1.nome, produto1.qtdVendida, revendedor1.nome);
+  mostrarQtdProdutoEmEstoque(produto2.nome, produto2.qtdEstoque);
+  mostrarQtdVendida(produto2.nome, produto2.qtdVendida, revendedor1.nome);
+  mostrarQtdProdutoEmEstoque(produto3.nome, produto3.qtdEstoque);
+  mostrarQtdVendida(produto3.nome, produto3.qtdVendida, revendedor1.nome);
+
   pularLinha();
-  print('Receita gerada com o produto ${produto1.nome}: ${produto1.verReceitaGerada()
-      .toStringAsFixed(2)}');
-  print('Produto em estoque do produto ${produto1.nome}: ${produto1.qtdEstoque}');
+  print('Receita gerada com o produto ${produto1.nome}: ${produto1.verReceitaGerada().toStringAsFixed(2)} reais');
+  print('Receita gerada com o produto ${produto2.nome}: ${produto2.verReceitaGerada().toStringAsFixed(2)} reais');
+  print('Receita gerada com o produto ${produto3.nome}: ${produto3.verReceitaGerada().toStringAsFixed(2)} reais');
+
+  pularLinha();
   revendedor1.verResumo();
-
-
-  //testando a feature 49
   pularLinha();
-  print('total gasto ${cliente1.calcularTotalGasto()}');
-  print('média dos produtos comprados ${cliente1.calcularMediaProdutosComprados().toStringAsFixed(2)}');
+
+  //Informações da compra dos clientes | Resumo
   cliente1.verResumo();
-  cliente1.ordenarProdutosComprados();
-  for(var produto in cliente1.produtosComprados){
-    print(produto.nome);
-  }
   pularLinha();
   cliente1.verProdutosComprados();
+  pularLinha();
+
+  revendedor2.verResumo();
 }
-
-
