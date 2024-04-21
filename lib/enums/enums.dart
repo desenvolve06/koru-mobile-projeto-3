@@ -1,7 +1,7 @@
 enum Genero{
-  masculino,
-  feminino,
-  outro,
+  MASCULINO,
+  FEMININO,
+  OUTRO,
 }
 
 enum Humor {

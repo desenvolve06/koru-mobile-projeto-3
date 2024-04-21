@@ -10,13 +10,13 @@ main() {
       nome: "Jorge",
       cpf: "064646464",
       dataNascimento: DateTime(2000, 12, 02),
-      genero: Genero.masculino,
+      genero: Genero.MASCULINO,
       matricula: "123456");
   Revendedor revendedor2 = Revendedor(
       nome: "Ana",
       cpf: "064646464",
       dataNascimento: DateTime(2000, 12, 02),
-      genero: Genero.feminino,
+      genero: Genero.FEMININO,
       matricula: "123456");
 
   // Criando um cliente
@@ -24,7 +24,7 @@ main() {
     nome: 'Heitor',
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
-    genero: Genero.masculino,
+    genero: Genero.MASCULINO,
     dinheiro: 400
   );
 
@@ -32,7 +32,7 @@ main() {
     nome: 'Carla',
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
-    genero: Genero.feminino,
+    genero: Genero.FEMININO,
     dinheiro: 500
   );
 
