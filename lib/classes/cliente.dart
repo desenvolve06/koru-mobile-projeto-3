@@ -1,4 +1,5 @@
 import '../utils.dart';
+import 'brinde.dart';
 import 'pessoa.dart';
 import 'produto.dart';
 import 'revendedor.dart';
@@ -6,6 +7,8 @@ import 'revendedor.dart';
 class Cliente extends Pessoa {
   double dinheiro;
   List<Produto> _produtosComprados = <Produto>[];
+  List<Brinde> brindes = <Brinde>[];
+  int pontos = 0;
 
   Cliente({
     required super.nome,
@@ -14,8 +17,6 @@ class Cliente extends Pessoa {
     required super.genero,
     this.dinheiro = 0,
   });
-
-  /// Dinheiro precisava ser opcional, mas caso recebesse como atributo nullable tinha possibilidade de ser null, causando problema na hora de adicionar o dinheiro, com ele tendo padrão como "0" ainda fica opcional no construtor mas caso não seja recebido não dará problema para adições futuras
 
   @override
   void falar(String texto) {
@@ -33,6 +34,7 @@ class Cliente extends Pessoa {
         revendedor.venderProduto(produto);
         dinheiro -= produto.valor;
         _produtosComprados.add(produto);
+        this.pontos++;
       } else {
         print('O cliente não tem saldo suficiente para comprar o produto');
       }
@@ -45,14 +47,16 @@ class Cliente extends Pessoa {
 
   double calcularTotalGasto() {
     return _produtosComprados.isEmpty
-        ? 0 : _produtosComprados.fold(0, (total, produto) => total + produto.valor);
+        ? 0
+        : _produtosComprados.fold(0, (total, produto) => total + produto.valor);
   }
 
   double calcularMediaProdutosComprados() {
     if (_produtosComprados.isEmpty) {
       return 0;
     }
-    double somaDosValoresProdutos = _produtosComprados.fold(0, (total, produto) => total + produto.valor);
+    double somaDosValoresProdutos =
+        _produtosComprados.fold(0, (total, produto) => total + produto.valor);
     return somaDosValoresProdutos / _produtosComprados.length;
   }
 
@@ -73,5 +77,42 @@ class Cliente extends Pessoa {
     }
     ordenarProdutosComprados();
     imprimirProdutosOrdenados(_produtosComprados);
+  }
+
+  void calcularTotalPontos() {
+    print('O cliente ${this.nome} possui ${this.pontos} pontos.');
+  }
+
+  void trocarPontosPorBrinde(Brinde brinde) {
+    if (this.pontos >= brinde.pontosNecessarios) {
+      try {
+        this.pontos -= brinde.pontosNecessarios;
+        brinde.RealizarTroca();
+        brindes.add(brinde);
+      } catch (exception) {
+        print(exception);
+      }
+    } else {
+      print(
+          'O cliente ${this.nome} não possui pontos suficientes para trocar por um(a) ${brinde.nome}.');
+    }
+  }
+
+  void ordenarBrindes() {
+    this.brindes.sort((a, b) => a.nome.compareTo(b.nome));
+  }
+
+  void verBrindes() {
+    if (brindes.isEmpty) {
+      print("Nenhum brinde trocado por ${this.nome}");
+      return;
+    }
+
+    ordenarBrindes();
+
+    print("Brindes trocados por ${this.nome}:");
+    for (var brinde in brindes) {
+      print("${brinde.nome}");
+    }
   }
 }
