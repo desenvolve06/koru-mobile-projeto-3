@@ -1,3 +1,4 @@
+import '../utils.dart';
 import 'pessoa.dart';
 import 'produto.dart';
 import 'revendedor.dart';
@@ -23,8 +24,7 @@ class Cliente extends Pessoa {
 
   void adicionarDinheiro(double valor) {
     dinheiro += valor;
-    print(
-        '${nome} após o depósito de $valor agora possui ${dinheiro.toStringAsFixed(2)} reais.');
+    imprimirSaldoAtualizadoAposDeposito(nome, valor, dinheiro);
   }
 
   void comprarProduto(Produto produto, Revendedor revendedor) {
@@ -44,54 +44,34 @@ class Cliente extends Pessoa {
   }
 
   double calcularTotalGasto() {
-    double totalGasto=0;
-    for (var produto in _produtosComprados) {
-      totalGasto += produto.valor;
-    }
-    return totalGasto;
+    return _produtosComprados.isEmpty
+        ? 0 : _produtosComprados.fold(0, (total, produto) => total + produto.valor);
   }
 
-  //aqui temos um retorno 0, pois não é possível dividir um número por 0, pois segundo a matemática cai na indeterminação.
-  double calcularMediaProdutosComprados(){
-
-    if(_produtosComprados.isEmpty){
+  double calcularMediaProdutosComprados() {
+    if (_produtosComprados.isEmpty) {
       return 0;
     }
-
-    double somaDosValoresProdutos = 0;
-    for (var produto in _produtosComprados){
-      somaDosValoresProdutos += produto.valor;
-    }
-
+    double somaDosValoresProdutos = _produtosComprados.fold(0, (total, produto) => total + produto.valor);
     return somaDosValoresProdutos / _produtosComprados.length;
   }
 
-  void verResumo(){
-    print('O total gasto por ${this.nome} foi ${calcularTotalGasto()} '
-    'e a média aritmética do valor dos produtos comprados é '
-    '${calcularMediaProdutosComprados().toStringAsFixed(2)} reais');
+  void verResumo() {
+    double totalGasto = calcularTotalGasto();
+    double mediaProdutos = calcularMediaProdutosComprados();
+    totalGastoCliente(nome, totalGasto, mediaProdutos);
   }
 
   void ordenarProdutosComprados() {
-  _produtosComprados.sort((a, b) => a.nome.compareTo(b.nome));
+    _produtosComprados.sort((a, b) => a.nome.compareTo(b.nome));
   }
-
-  List<Produto> get produtosComprados => _produtosComprados;
-
 
   void verProdutosComprados() {
     if (_produtosComprados.isEmpty) {
       print("Nenhum produto comprado por ${nome}");
       return;
     }
-
     ordenarProdutosComprados();
-
-    print("Produtos comprados por ${nome}:");
-    for (var produto in _produtosComprados) {
-      print("${produto.nome} - ${produto.valor.toStringAsFixed(2)}");
-    }
+    imprimirProdutosOrdenados(_produtosComprados);
   }
-
-
 }
