@@ -1,5 +1,4 @@
 import 'classes/produto.dart';
-
 void pularLinha() {
   print('\n');
 }
@@ -27,7 +26,7 @@ void imprimirResumo(
 }
 
 void totalGastoCliente(String nome, double totalGasto, double media) {
-  print('Resumo Cliente $nome: O total gasto foi de R\$ ${totalGasto.
+  print('O total gasto pelo cliente $nome foi de R\$ ${totalGasto.
   toStringAsFixed(2)} reais e a média de valor dos produtos foi de R\$ ${media.
   toStringAsFixed(2)} reais.');
 }
@@ -43,9 +42,17 @@ String calcularTotalItensVendidos(Produto produto) {
   return 'Total de itens vendidos para ${produto.nome}: $totalItensVendidos';
 }
 
-
 void imprimirInformacoesProduto(Produto produto) {
   print('Informações do Produto:');
   print('Total de itens comprados: ${produto.qtdVendida}');
   print(calcularTotalItensVendidos(produto));
 }
+
+void imprimirRealizarTrocaComSucesso(String nome) {
+  print("Troca realizada! Você ganhou um(a) $nome");
+}
+
+void imprimirNomeEHumor(String humorDoDia) {
+  print('$humorDoDia');
+}
+

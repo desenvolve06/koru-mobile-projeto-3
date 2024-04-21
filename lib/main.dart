@@ -27,6 +27,7 @@ main() {
     genero: Genero.masculino,
     dinheiro: 400
   );
+
   Cliente cliente2 = Cliente(
     nome: 'Carla',
     cpf: '1111',
@@ -59,7 +60,6 @@ main() {
   cliente1.adicionarDinheiro(1000.0);
   pularLinha();
 
-
 //aqui o cliente compra o produto e nele já tem um método que chama o revendedor.venderProduto
   cliente1.comprarProduto(produto1, revendedor1);
   cliente1.comprarProduto(produto2, revendedor1);
@@ -76,12 +76,17 @@ main() {
   mostrarQtdVendida(produto3.nome, produto3.qtdVendida, revendedor1.nome);
 
   pularLinha();
+  // Receita gerada
   print('Receita gerada com o produto ${produto1.nome}: ${produto1.verReceitaGerada().toStringAsFixed(2)} reais');
   print('Receita gerada com o produto ${produto2.nome}: ${produto2.verReceitaGerada().toStringAsFixed(2)} reais');
   print('Receita gerada com o produto ${produto3.nome}: ${produto3.verReceitaGerada().toStringAsFixed(2)} reais');
 
   pularLinha();
+  // Revendedor | Resumo
   revendedor1.verResumo();
+  revendedor1.termometroDoHumor(Humor.FELIZ);
+  revendedor2.verResumo();
+  revendedor2.termometroDoHumor(Humor.TRISTE);
   pularLinha();
 
   //Informações da compra dos clientes | Resumo
@@ -89,6 +94,7 @@ main() {
   pularLinha();
   cliente1.verProdutosComprados();
   pularLinha();
-
-  revendedor2.verResumo();
+  cliente1.termometroDoHumor(Humor.FELIZ);
+  revendedor1.termometroDoHumor(Humor.RADIANTE);
+  revendedor2.termometroDoHumor(Humor.TRISTE);
 }
