@@ -1,4 +1,5 @@
 import 'classes/cliente.dart';
+import 'classes/pessoa.dart';
 import 'classes/produto.dart';
 import 'classes/revendedor.dart';
 import 'enums/enums.dart';
@@ -10,21 +11,24 @@ main() {
       nome: "Jorge",
       cpf: "064646464",
       dataNascimento: DateTime(2000, 12, 02),
-      genero: Genero.MASCULINO,
+      genero: Genero.masculino,
       matricula: "123456");
   Revendedor revendedor2 = Revendedor(
       nome: "Ana",
       cpf: "064646464",
-      dataNascimento: DateTime(2000, 12, 02),
-      genero: Genero.FEMININO,
+      dataNascimento: DateTime.parse('200-12-02'),
+      genero: Genero.feminino,
       matricula: "123456");
+
+  Pessoa pessoa = Pessoa(nome: "a", cpf: '121', dataNascimento: DateTime.parse('2000-12-02'), genero: Genero.feminino);
+  pessoa.calcularIdade();
 
   // Criando um cliente
   Cliente cliente1 = Cliente(
     nome: 'Heitor',
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
-    genero: Genero.MASCULINO,
+    genero: Genero.masculino,
     dinheiro: 400
   );
 
@@ -32,7 +36,7 @@ main() {
     nome: 'Carla',
     cpf: '1111',
     dataNascimento: DateTime(2000, 12, 02),
-    genero: Genero.FEMININO,
+    genero: Genero.feminino,
     dinheiro: 500
   );
 
@@ -84,9 +88,9 @@ main() {
   pularLinha();
   // Revendedor | Resumo
   revendedor1.verResumo();
-  revendedor1.termometroDoHumor(Humor.FELIZ);
+  revendedor1.termometroDoHumor(Humor.feliz);
   revendedor2.verResumo();
-  revendedor2.termometroDoHumor(Humor.TRISTE);
+  revendedor2.termometroDoHumor(Humor.triste);
   pularLinha();
 
   //Informações da compra dos clientes | Resumo
@@ -94,7 +98,7 @@ main() {
   pularLinha();
   cliente1.verProdutosComprados();
   pularLinha();
-  cliente1.termometroDoHumor(Humor.FELIZ);
-  revendedor1.termometroDoHumor(Humor.RADIANTE);
-  revendedor2.termometroDoHumor(Humor.TRISTE);
+  cliente1.termometroDoHumor(Humor.feliz);
+  revendedor1.termometroDoHumor(Humor.radiante);
+  revendedor2.termometroDoHumor(Humor.triste);
 }

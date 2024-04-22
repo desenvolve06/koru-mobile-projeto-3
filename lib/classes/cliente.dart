@@ -46,9 +46,8 @@ class Cliente extends Pessoa {
   }
 
   double calcularTotalGasto() {
-    return _produtosComprados.isEmpty
-        ? 0
-        : _produtosComprados.fold(0, (total, produto) => total + produto.valor);
+    return _produtosComprados.isEmpty ? 0 : _produtosComprados
+        .fold(0, (total, produto) => total + produto.valor);
   }
 
   double calcularMediaProdutosComprados() {

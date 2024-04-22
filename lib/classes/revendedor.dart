@@ -21,13 +21,13 @@ class Revendedor extends Pessoa {
   void falar(String texto) {
     String titulo;
     switch (genero) {
-      case (Genero.MASCULINO):
+      case (Genero.masculino):
         titulo = 'Revendedor';
         break;
-      case (Genero.FEMININO):
+      case (Genero.feminino):
         titulo = 'Revendedora';
         break;
-      case (Genero.OUTRO):
+      case (Genero.outro):
         titulo = 'Pessoa revendedora';
         break;
       default:
@@ -49,13 +49,10 @@ class Revendedor extends Pessoa {
   double calcularTotalVendido() {
     return _produtosVendidos.isEmpty
         ? 0 : _produtosVendidos.fold(0, (total, produto) => total + produto.valor);
-
   }
 
-  double calcularMediaProdutosVendidos() {
-    return _produtosVendidos.isEmpty
+  double calcularMediaProdutosVendidos() => _produtosVendidos.isEmpty
         ? 0 : totalProdutosVendidos / _produtosVendidos.length;
-  }
 
   double calcularLucro() => totalProdutosVendidos * porcentagemDeLucro;
 
