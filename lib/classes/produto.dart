@@ -1,7 +1,7 @@
 class Produto {
   final String nome;
-  late double valor;
-  late int qtdEstoque;
+  double valor;
+  int qtdEstoque;
   int qtdVendida = 0;
 
   Produto({required this.nome, required this.valor, required this.qtdEstoque});
