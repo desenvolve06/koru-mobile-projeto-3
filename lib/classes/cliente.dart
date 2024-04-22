@@ -6,7 +6,7 @@ import 'revendedor.dart';
 
 class Cliente extends Pessoa {
   double dinheiro;
-  List<Produto> _produtosComprados = <Produto>[];
+  final List<Produto> _produtosComprados = <Produto>[];
   List<Brinde> brindes = <Brinde>[];
   int pontos = 0;
 
@@ -86,7 +86,7 @@ class Cliente extends Pessoa {
     if (this.pontos >= brinde.pontosNecessarios) {
       try {
         this.pontos -= brinde.pontosNecessarios;
-        brinde.RealizarTroca();
+        brinde.brinde();
         brindes.add(brinde);
       } catch (exception) {
         print(exception);
