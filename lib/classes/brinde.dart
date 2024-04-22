@@ -9,11 +9,11 @@ class Brinde{
     required this.qtdEmEstoque
   });
 
-  void CalcularPontosNecessarios(){
+  void calcularPontosNecessarios(){
     print('Para ganhar um(a) ${this.nome} você precisa de ${this.pontosNecessarios} pontos.');
   }
 
-  void RealizarTroca(){
+  void brinde(){
     if(this.qtdEmEstoque > 0){
       this.qtdEmEstoque--;
       print('Troca realizada! Você ganhou um(a) ${this.nome}.');
