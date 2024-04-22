@@ -21,13 +21,13 @@ class Revendedor extends Pessoa {
   void falar(String texto) {
     String titulo;
     switch (genero) {
-      case (Genero.masculino):
+      case (Genero.MASCULINO):
         titulo = 'Revendedor';
         break;
-      case (Genero.feminino):
+      case (Genero.FEMININO):
         titulo = 'Revendedora';
         break;
-      case (Genero.outro):
+      case (Genero.OUTRO):
         titulo = 'Pessoa revendedora';
         break;
       default:

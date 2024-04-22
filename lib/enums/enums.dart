@@ -1,5 +1,15 @@
 enum Genero{
-  masculino,
-  feminino,
-  outro,
+  MASCULINO,
+  FEMININO,
+  OUTRO,
+}
+
+enum Humor {
+  ANSIOSA,
+  RADIANTE,
+  CANSADA,
+  DECEPCIONADA,
+  ESTRESSADA,
+  FELIZ,
+  TRISTE,
 }
