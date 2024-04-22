@@ -16,7 +16,7 @@ main() {
   Revendedor revendedor2 = Revendedor(
       nome: "Ana",
       cpf: "064646464",
-      dataNascimento: DateTime.parse('200-12-02'),
+      dataNascimento: DateTime.parse('2000-12-02'),
       genero: Genero.feminino,
       matricula: "123456");
 
